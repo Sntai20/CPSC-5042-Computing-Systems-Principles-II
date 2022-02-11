@@ -22,8 +22,11 @@ int main()
     else 
     {
         cout << "printed from child process " << getpid() << endl;
+        sleep(40);
         exit(EXIT_SUCCESS);
     }
+
+    sleep(40);
 
     return EXIT_SUCCESS;
 }

@@ -4,6 +4,7 @@
 #include <semaphore.h>
 #include <unistd.h>
 #include <sys/time.h>
+#include <stdlib.h>
 
 sem_t mutex;
 int globalX = 0;
@@ -55,11 +56,12 @@ int main()
     int val=50;
 
     pthread_create(&t1,NULL,thread,&val);
-    pthread_create(&t2,NULL,thread,NULL);
+    pthread_create(&t2,NULL,thread,&val);
 
     //  Cleanup as main thread waits for all threads to terminate before it terminates
 
     pthread_join(t1,NULL);
+    sleep(40);
     pthread_join(t2,NULL);
     sem_destroy(&mutex);
     
