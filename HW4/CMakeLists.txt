@@ -9,8 +9,13 @@ project ("HW4" CXX)
 enable_language(CXX)
 
 # Add source to this project's executable.
-add_executable (Condition_Variable "Condition_Variable.cpp")
+add_executable (HW4 "Condition_Variable.cpp")
 
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+# Add pthread
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+target_link_libraries("HW4" PRIVATE Threads::Threads)
