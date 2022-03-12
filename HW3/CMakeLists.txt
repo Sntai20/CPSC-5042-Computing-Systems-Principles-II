@@ -2,8 +2,11 @@
 # project specific logic here.
 cmake_minimum_required (VERSION 3.16)
 
-project ("week6")
+project ("HW3")
 
 # Add source to this project's executable.
-add_executable (fork "fork.cpp")
-add_executable (threaddemo1 "threaddemo1.cpp")
+add_executable (threadmutex "hw3.cpp")
+
+# specify the C++ standard
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
