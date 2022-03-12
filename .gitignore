@@ -45,11 +45,17 @@ ipch/
 # Visual Studio cache/options directory
 .vs/
 .out/
-/Server-Project/vs
-/Client-Project/vs
-/Server-Project/out
-/Client-Project/out
+/HW4/.vs
+/HW4/.vs
+/HW3/.out
+/HW4/.out
 /out/
 
 # Cmake for Mac
 /build/
+
+# Visual Studio Code
+/.vscode/
+
+# Apple Files
+*.DS_Store
