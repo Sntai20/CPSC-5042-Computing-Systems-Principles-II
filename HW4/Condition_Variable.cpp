@@ -1,8 +1,29 @@
+/**
+ * @file Condition_Variable.cpp
+ * @author Antonio Santana (asantana1@seattleu.edu)
+ * @brief A condition variable is generally used to avoid busy waiting (looping repeatedly 
+ * while checking a condition) while waiting for a resource to become available. For example, 
+ * if you have a thread (or multiple threads) that can't continue onward until a queue is empty, 
+ * the busy waiting approach would be to just wasting cycles. 
+ * 
+ * The problem with this is wasting processor time by having this thread repeatedly check the 
+ * condition. Instead have a synchronization variable that can be signaled to tell the thread 
+ * that the resource is available.
+ * 
+ * Synchronization variables can be used to let the barber thread wait/sleep while on a 
+ * single particular condition (e.g. for the queue to be empty).
+ * 
+ * @version 0.1
+ * @date 2022-03-12
+ * 
+ */
+
 #include <iostream>
 #include <queue>
 #include <condition_variable>
 #include <thread>
 
+// This stuct simulates the customer instance.
 struct Item
 {
 	int age;
@@ -10,7 +31,7 @@ struct Item
 	std::string lastname;
 };
 
-std::queue<Item> queue;
+std::queue<Item> queue; // Number of customer sitting in the waiting room chairs.
 std::condition_variable cond;
 std::mutex mut;
 
@@ -21,6 +42,13 @@ void CustomerGenerator();
 const int MAXNUMBEROFSEATS = 10;
 int MAXNUMBEROFCUSTOMERS = 13;
 
+/**
+ * @brief This is the main entry to the program. Start 
+ * the customer and barber threads before generating
+ * a random set of customers.
+ * 
+ * @return int 
+ */
 int main()
 {
     std::thread t1 (Customer);
@@ -30,8 +58,6 @@ int main()
 
     t1.join();
     t2.join();
-
-	std::cout << "\nQueue Size = " << queue.size() << std::endl;
 
     return 0;
 }
@@ -79,7 +105,7 @@ void Barber()
 		std::cout << "\nHaircut complete ... END" << queue.empty() << std::endl;
 		// std::cout << "\nQueue Size = " << queue.size() << std::endl;
 		lck.unlock();
-	}
+	} // End of while loop.
 } // End of Barber.
 
 /**
@@ -108,9 +134,14 @@ void Customer()
           	cond.notify_one();
 		} 
 	} // End of while loop.
-	
 } // End of Customer function.
 
+/**
+ * @brief Simple function to create a customer named 
+ * Jack Sparrow. 
+ * 
+ * @return Item 
+ */
 Item AddOneCustomer()
 {
 	Item item;
