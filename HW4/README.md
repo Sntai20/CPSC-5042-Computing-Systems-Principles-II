@@ -20,3 +20,21 @@ When a customer arrives, he executes customer procedure the customer acquires th
 If the chair is available then customer sits in the waiting room and increments the variable waiting value and also increases the customer’s semaphore this wakes up the barber if he is sleeping.
 
 At this point, customer and barber are both awake and the barber is ready to give that person a haircut. When the haircut is over, the customer exits the procedure and if there are no customers in waiting room barber sleeps.
+
+## Build
+
+To build, navigate to the `./HW4/`
+
+`cmake --preset macos-default`
+
+Available configure presets:
+
+ - "linux-default"   - Use this preset for Linux Debug
+ - "macos-default"   - Use this preset for macOS Debug
+ - "windows-default" - Use this preset for Windows x64 Debug
+
+## Run the Code
+
+To run the code, navigate to the build Project Folder `~/CPSC-5042-Computing-Systems-Principles-II/out/build/macos-default/HW4/`.
+
+To run the HW4, `./Condition_Variable`
